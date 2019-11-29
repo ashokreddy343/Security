@@ -1,0 +1,16 @@
+Importance of Browser Security Reporting
+Content Security Policies
+HTTP Public Key Pinning Reporting
+	public-key-pins-report-only
+	How HPKP works
+		https://badssl.com/		
+Certificate Authority Authorization(CAA)
+	https://toolbox.googleapps.com/apps/main/
+	https://toolbox.googleapps.com/apps/dig/
+Certificate Transparency(CT) Reporting
+	https://crt.sh/
+		Enter an Identity (Domain Name, Organization Name, etc),
+		a Certificate Fingerprint (SHA-1 or SHA-256) or a crt.sh ID	
+Cross-site scripting(XSS) reporting
+	x-xss-protection:1 (headers it means it will protect xss attacks)
+

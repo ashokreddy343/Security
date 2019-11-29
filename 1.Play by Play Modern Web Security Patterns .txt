@@ -1,0 +1,20 @@
+1.The Javascript Supply Chain Paradox:SRI,CSP and Trust in Third Party Libraries
+2.cryptominer
+3.browsealoud
+4.caniuse.com
+5.subresource integrity
+6.https://caniuse.com/
+7.content security policies in action
+8.Report Content Security Policy validations
+9.issues with cross site scripting
+10.HTTPS and the browser
+11.https://dnsspy.io/
+12.https://www.ssllabs.com/ssltest/
+Intercepting Results of Online Security tools
+	1.https://securityheaders.com/
+	2.https://observatory.mozilla.org/
+Improving the communication
+	https://securitytxt.org/
+	
+
+	

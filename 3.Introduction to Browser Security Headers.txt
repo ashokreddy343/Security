@@ -1,0 +1,140 @@
+Security Threats in a Web World
+	1.SQL Injection
+	2.Insufficient Authorization
+	3.Weak Credential Storage
+	4.Cross Site Scripting
+	5.Insufficent Transport Layer Security
+	6.Clickjacking
+Things the Server Can't control
+	1.A client explicitly request secure content via the HTTP scheme
+		we will fix this with the HSTS header
+	2.A certificate authority is comprosmised and issues rogue certificates
+	  we will fix this with the HPKP header
+	3.Another website embeds yours in a frame and clickjacks it
+	  we will fix this with CSP header
+Understanding Headers
+Cache-control:private,max-age=1670
+What happens now ?
+	a.The browser has to implement the header 
+	b.it's client side control
+	c.if it doesn't recognize it,it will just ignore it
+Non-standard and Browser Prefixed Headers
+	1.X-Content-Security-Plicy
+	2.X-Webkit-CSP
+	3.X-Frame-Options
+	4.X-XSS-Protection
+Security Header Usage by the Top 1M Sites
+HTTP Strict transport Security(HSTS)
+	Understanding the Problems that HSTS solves
+	Understanding HSTS
+		1.Strict-Transport-Security:
+			max-age=31536000;includesubdomains;preload
+		2.Declares that a client should only interact with a site over
+		  HTTPS
+		3.Protects against downgrade attacks
+		4.Relies on "trust on first use"(TOFU)
+The max-age Directive
+	1.Declares the period for which insecure requests cannot be made
+	2.the units are in seconds -31536000 seconds is 
+	  approximately 1 year
+	3.the duration is reset on every receipt of the response header
+	4.chrome://net-internals/#hsts
+The include subdomains keywords
+	1.The scope of HSTS can be extended to all subdomains
+	2.this protects current and future assets
+	3.this is required for the preload attribute we will look at next
+The preload keyword
+	1.Trust on first use is not foolproof
+	2.There is still a window of opportunity for an MitM attack
+	3.Preloading HSTS hard-codes it into the browser
+	4.https://hstspreload.appspot.com
+	5.Only 0.0009% of domains are preloading HSTS
+Browser compatability
+implement HSTS in asp.net mvc
+ <httpProtocol>
+      <customHeaders>
+        <add name="X-Frame-Options" value="SAMEORIGIN" />
+        <add name="X-Xss-Protection" value="1; mode=block" />
+        <add name="X-Content-Type-Options" value="nosniff" />
+        <add name="Content-Security-Policy" value="script-src 'unsafe-eval' 'unsafe-inline' 'self' https://kendo.cdn.telerik.com;" />
+        <add name="Strict-Transport-Security" value="max-age=86400"/>
+        <remove name="X-Powered-By" />
+        <remove name="Server"/>
+      </customHeaders>
+    </httpProtocol>
+
+HTTP Public Key Pinning(HPKP)
+	Understanding the problem that HPKP Solves
+	Understanding HPKP
+		Public-key-pins:
+			pin-sha256=[pin 1];pin-sha256=[ping 2];
+			max-age=2592000;report-uri=[uri];includesubdomains
+	1.Whitelists all the allowable certs for the domain
+	2.Protects against the use of fradulent certs
+	3.Relies on "trust on first use"(TOFU)
+The pin-sha256 directive
+	1.Declares multiple (at least 2) hashes of the cert thumbprint
+	2.The thumbprint can be from any public cert in the cert chain	
+	3.it can also be the thumbprint of the cert signing request(CSR)
+	Best Practice for Pins
+		1.Pin the public cert
+		2.Pin a CSR
+		3.Pin a backup CSR
+The max-age directive
+	1.Declares the period for which a pinned cert must be served
+	2.The units are in seconds -2592000 seconds is approximately 1 month
+	3.The duration is reset on every receipt of the response header
+the report-uri directive
+	1.DIrects the browser to report the key violation via the
+	  specified URI
+	2.This relies on the browser to correctly implement the directive
+	3.But there are other challenges when traffic is being mitmd
+The includesubdomains keyword
+	1.Ensures that all sub domains must also use the same pins
+	2.The pinned cert could be a wildcard or mutli-domain cert
+	3.Thers is a risk doing users if a subdomain gets a new cert
+Browser Compatability
+Content Security Policy(CSP)
+	Understanding the Problem CSP Solves
+		https://pastebin.com/aJna4paJ
+	Understanding CSP
+		script-sec 'self' 'unsafe-inline' 'unsafe-eval'[uris];style-src
+		'self' 'unsafe-inline'
+default-src directive
+script-src
+	script-src 'self' https://www.google.com
+		   https://www.google-analytics.com
+		  https://bam.nr-data.net
+style-src
+	style-src 'self' https://cdnjs.cloudflare.com
+img-src
+	img-src 'self' https://az594751.vo.msecnd.net
+	https://www.google.com https://www.google-analytics.com
+font-src
+	font-src 'self' https://cdnjs.cloudflare.com
+object-src
+	object-src 'none'
+media-src
+	media-src 'none'
+child-src 
+	child-src https://rpm.newrelic.com
+connect-src
+	connect-src 'self'
+Using Hashes abd nonces to whitelist unsafe inline content
+The frame-ancestors
+	frame-ancestors:none
+The report-uri directive
+Tools for working with Browser Headers
+	SecurityHeaders.io
+		https://securityheaders.com/	
+	REPORT URI
+		https://report-uri.com/
+		csp builder
+			
+
+	
+			
+									
+
+				
+	
