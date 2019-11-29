@@ -1,0 +1,10 @@
+Why Web Security ?
+	Core Problems
+		
+Web Technologies
+	HTTP Request
+		1.The User-Agent header is used to provide information abouth the
+		  browser or other client software that generated the request
+Preapring the Lab Enviornment
+	Kali Linux -attacker
+	dvwa.co.uk -web application

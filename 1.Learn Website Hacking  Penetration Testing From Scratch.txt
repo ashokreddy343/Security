@@ -1,0 +1,334 @@
+We will create the following machines in our lab(for now)
+	1.Attacker machine - kali linux
+	2.victim 1- Metasploit
+	3.Victim 2- Windows
+The Linux Terminal & Basic Linux Commands
+	1.pwd:current working directory
+	2.ls :all directories in current working directory
+	3.cd downloads
+	4.https://www.mediacollege.com/linux/command/linux-command.html(list of linux commands)
+	5.man ls : it will show all the options related to this command
+	6.ls -l
+BeEF - Stealing Credentials/Passwords Using A Fake Login Prompt
+Bonus - Installing Veil 3.1
+	1.Veil -Framework
+	2.A backdoor is a file that gives us full control over the machine that 
+	  it gets executed on
+	3.Backdoors can be caught by Anti-Virtus programs
+	4.Veil is a framework for generating Undetectable backdoors
+	5.https://github.com/Veil-Framework/Veil.git
+Bonus - Veil OverView & Payloads Basics
+	
+	7.ls --help
+	8.apt-get update 
+	9.apt-get install terminator
+Configuring Metasploitable & Lab Network Settings
+	ipconfig
+What is a Website How to hack a website ?
+	1.computer with OS and some servers
+	2.Apache,MySQL ..etc
+	3.Contains web application
+	4.PHP,Python ...etc
+	5.Web application is executed here and not on the
+	  client's machine
+Information Gathering
+	Ip address
+	Domain name info
+	Techologies used
+	Other websites on the same server
+	DNS records
+	Unlisted files,sub-domains,directories
+	whois Lookup - Find info about the owner of the target
+		http://whois.domaintools.com/
+	netcraft site report - shows technologies used on the target
+		http://toolbar.netcraft.com/sit-report?url=
+	Robtex DNS lookup - show comprehensive inof about the target website
+		https://www.robtex.com/
+Discovering Technologies Used on the Website
+	1.https://www.netcraft.com/
+	2.https://www.exploit-db.com/
+	3.https://toolbar.netcraft.com/site_report?url=
+Gathering Comprehensive DNS Information
+	1.https://www.robtex.com/oldindex.html
+Discovering Websites On the Same Server
+	1.One server can serve a number of websites
+	2.Gaining access to one can help gaining access to others
+	To find websites on the same server
+		1.Use Robtex DNS lookup under "names pointing to same IP".
+		2.Using bing.com,search fro ip:[target ip]
+			ex:ip:192.0.78.25
+	Discovering Subdomains
+		1.subdomain.target.com
+		2.ex:beta.facebook.com
+		Knock can be used to find subdomains of target
+			1.download it -git clone https://github.com/guelfoweb/knock
+			2.Navigate to knocke.py cd knock/knock.py
+			3.run it - python knock.py[target]
+			ex:python knockpy.py facebook.com
+Discovering Sensitive Files
+	1.Find files & directories in target website
+	2.A tool called drib
+		>dirb [target][wordlist][options]
+	3.For more info run
+		>man dirb
+		dirb http://10.20.14.2014/mutillidate
+Analysing Discovered Files
+Maltego-Discovering Servers,Domains & Files
+	1.Maltego is an information gathering tool that can be used to 
+	  collect information about anything
+	2.To run maltego type the following in terminal
+		>maltegoce
+Maltego-Discovering websites,Hosting Provider & Emails
+What are they?And How to Disover & Exploit Basic File Upload Vulnerabilities
+	Exploitation File Upload Vulns
+		1.Simples type of vulnerabilities
+		2.Allow users to upload executable files such as php
+	Upload a php shell or backdoor,ex:weevly
+		1.Generate backdoor >weevly generate [password][filename]
+		2.Upload generated file 
+		3.Connect to it	>weevly [url to file][password]
+		4.Find out how to use weevly >help
+		>weevely generate 123456 /root/shell.php
+		>weevely http://10.20.14.204/dvwa/hackable/uploads/shell.php 123456
+		weevely offers more features
+HTTP Request - GET & POST
+	Intercepting Requests-Basic Information flow
+		1.User clicks on a link
+		2.HTMl Website generates a request(client side)
+		3.Request is sent to the server
+		4.Server performs the request(server side)
+		5.Sends response back
+Intercepting HTTP Requests
+	burp proxy
+	burp suite
+Fixing File Upload Vulnerabilities
+	1.Never allow users to upload executables(php,exe...etc)
+	2.Check the file type AND the fileextension
+	3.Analyse the uploaded file itself,recreate it and rename it.
+Code Execution Vulnerabilites
+	Exploitation Code Execution Vulns
+		1.Allows an attacker to execute OS commands
+		2.Windows or lunux commands
+		3.can be used to get a reverse shell
+		4.or upload any file using wget command
+		5.code execution commands attached in the resources
+		6.ping 10.20.14.203;pwd
+		7.nc --v -l -p 8080 //nc:netcate
+		8.ls | pwd
+		9.ping 10.20.14.208 | pwd
+FIxing Code Execution Vulnerabilities
+	1.Don't use dangerous functions
+	2.Filter use input before execution
+Local FIle Inclusion Vulnerabilities(LFI)
+	1.Allows an attacker read ANY file on the same server
+	2.Access files outside www directory
+Remote FIle Inclusion Vulnerabilities(RFI)
+	Exploitation-Remote FIle Inclusion
+		1.Similar to local file inclusion
+		2.But allows an attacker read any file from any server
+		3.Execute php files from other servers on the current server
+		3.Store php files on other servers as .txt
+	Fixing File Inclusion Vulnerabilities
+		1.Prevent remove file inclusion
+			>Disable allow-url_fopen & all_url_include
+		2.Prevent local file inclusion
+			>Use static file inclusion
+SQL Injection Vulnerabilities
+	What SQL?
+		1.Most websites use a database to store data.
+		2.Most data stored in it(usernames,passwords..etc)
+		3.Web application reads,updates and inserts data in the database
+		4.Interaction with DB done using SQL
+	Dangers of SQL Injections
+		1.
+Discovering SQL Injections In POST
+	1.Try to break the page
+	2.Using 'and','order by' or "".
+	3.Test text boxes and url parameters on the form
+	  http://target.com/page.php?something=something
+	4.Select * from accounts where username='azid' and password='123456 and 1=1'#
+Bypassing Logins Using SQL Injection Vulnerability
+Bypassing More Secure Logins Using SQL Injections
+Preventing SQL Injections In Login Pages
+Discovering SQL Injections in GET
+Reading Database Information
+Finding Datbase Tables
+Extracting Sensitive Data Such As Passwords
+Discovering & Exploiting Blind SQL Injections
+Discovering a More Complicated SQL Injection
+ByPassing Filters
+ByPassing Security & Accessing All Records
+Quick To Prevent SQL Injections
+Reading & Writing Files on The Sever Using SQL Injection Vulnerabilities
+Getting A Reverse Shell Access & Gaining Full control Over the target web server
+Discovering SQL Injections & Extracting Data USing SQL Map
+	SQLMAP
+		1.Tool designed to exploit sql injections
+		2.Works with many db types,mysql,mssql..etc
+		3.Can be used to perform everything we learned and more
+		sqlmap --help
+		sqlmap -u[target url]
+Getting a Direct SQL Shell using SQLmap
+[Security] - The Right Way To Prevent SQL Injection
+	Filters can be bypassed
+	Use black list of commands?Still can be bypassed
+	Use whitelist?Same issue
+	Use parameterized statements,separate data from sql code
+XSS Vulnerabilities
+	XSS- Cross Site Scripting vulns
+		1.Allow an attacker to inject javascript code into the page
+		2.Code is executed when the page loads
+		3.Code is executed on the client machine not the server
+	Three main types
+		1.Persistent/Stored XSS
+		2.Reflected XSS
+		3.DOM based XSS
+	Discovering XSS(Cross site scripting)
+		1.Try to inject javascript code into the pages
+		2.Test text boxes and url parameters on the form
+	Discovering Advanced Reflected XSS
+		<Script>alert('xss')</script>
+	Discovering An even More Advanced Reflected XSS
+	Discovering Stored XSS
+		1.Persistent,stored on the page or DB
+		2.THe injected code is executed everytime the page is loaded
+	Discovering Advanced Stored XSS
+XSS Vulnerabilities -Exploitation
+	Exploiting XSS - BEEF Framework
+		1.Run any javascript code.
+		2.Targets can be hooked to beef using javascript code
+		3.Browser Exploitation Framework allowing us to launch a number
+		  of attacks on a hooked target
+		username:beef password:beef
+Hooking Victims To BeEF Using Stored XSS
+BeEF - Interacting with Hooked Victims
+BeEF - Running Basic Commands on Victims
+	Bonus-Generating An Undetectable Backdoor Using Veil 3
+Bonus -Listening for Incoming Connections
+	msfconsole
+	use explout/multi/handler
+	show options
+Bonus -	Using A Basic Delivery Method To Test The Backdoor & Hack windows 10
+BeEF -Gaining Full Controle Over WIndows Target
+[Security] Fixing XSS Vulnerabilities
+	1.Minimize the usage of user input on html
+	2.Escape any untrusteed input before inserting it into the page
+Insecure Session Management
+	Logging In As Admin Without a Password By Mainpulating Cookies
+		cookiemanager firefox addon
+	Discovering Cross Site Request Forgery Vulnerabilities(CSRF)
+		1.Requests are not validated at the server side
+		2.Server does not check if the user generated the request
+		3.Requests can forged and sent to users to make them do things they 
+		  don't intent to do such as changing their password
+	Exploring CSRF Vulnerabilities To CHange Admin Password Using a HTML file
+	Exploring CSRF Vulnerabilities To CHange Admin Password Using Link
+		cp Desktop/csrf.html 
+	[Security] The Right Way To Prevent CSRF Vulnerabilities
+		.
+	
+		
+				
+			
+								
+				
+
+	
+	
+		
+	
+	
+		
+	
+	
+		
+
+
+
+
+
+
+
+
+
+	
+
+
+65000
+56500
+
+
+60
+1999
+1214
+101
+202
+10
+55
+550
+270
+140
+120
+74
+661
+230
+230
+2800
+441
+795
+292
+1364
+4051
+378
+15
+1758
+389
+17583
+
+3030
+1500
+16
+93
+431
+87
+431
+
+23650+5164
+28814
+25108
+
+3706
+697
+763
+527
+518
+1201
+			
+	
+	
+		
+
+
+
+
+CFRPM0473B
+b104 xsreal symphony,padur
+chennai
+
+T3,block 3,pace Prana,Padikuppam road,
+Annanagar west,
+Chennai-600040
+
+madhumathi kamalesh kumar
+63AB 351444
+
+rental aggrement
+
+truthy
+false
+var a=1||0
+listen
+
+
+
+	

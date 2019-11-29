@@ -1,0 +1,382 @@
+Kali
+	1.Debian driven
+	2.Built for pentestinf and forensics
+	3.over 300 tools
+	4.Not suited for non pentesters
+What changes in Kali Linux 2018
+	apt update && apt full-upgrade
+	if you get a key mismatch error
+		-wget -q -o -
+		https://archive.kali.org/archive-key.asc | apt-key add
+GUI changes in Kali LInux 2018
+Kali Linux GUI
+Kali Linux Terminal
+Getting the first shell
+	nc 192.168.190.145 1524
+	whoami
+	ifconfig
+	hostname
+Kali Linux Terminal Shortcuts
+	1.Ctrl + c - Kill command
+	2.Ctrl +z  -Stop(suspend)command
+	3.fg -Foreground Jobs(number)
+	4.clear -Clear screen
+	5.exit - Exit terminal
+	6.Tab -Auto complete
+	7.Shift PgUp - Scroll Up
+	8.Shift PgDn - Scroll down
+	9.Up Arrow -Go to previous commands
+	10.history - See commands run in the past
+Kali Linux root,root and root
+Basics of Commands
+	1.Linux is case sensitive
+	pwd-print working directory
+	cd-change directory
+	mkdir-make/create directory
+	touch -create file
+	ls-list directory content
+	cat-Concatenate and display files
+	less-show file content
+	head - [n] -default diplays the first 10 lines of a file
+	tail - [n] -default displays the last 10 lines of a fie
+	 	tail -f - Follow the end of a changing file
+	cp -Copy file
+	mv - Move or rename file
+	rm and rmdir - remove file and/or directory
+Navigating Directories
+	1.pwd
+	2.cd /tmp/
+	3.pwd
+	4.cd ..
+	5.cd ~
+Creating Directories
+	1.mkdir /tmp/testdir
+	2.mkdir -p /tmp/dir1/dir2
+	3.touch /tmp/testfile
+	4.cd /tmp/
+	5.ls
+	6.
+Listing directory contents
+	1.l-long listing
+	2.a-list hidden files
+	3.r-list in reverse name
+	4.t-list ne files first
+	5.rt-list in reverse time(older first)
+	ls -l /tmp/
+	ls -al /tmp/
+	ls -rl /tmp/
+	ls -tl /tmp/
+	ls -rtl /tmp/
+Listing file content
+	.bash_history retains the last 500 commands executed by a user
+	cat .bash_history
+	less .bash_history
+	head .bash_history
+Copying files and directories
+	cp /tmp/testfile Documents/
+	cp sourcedirectory destionationdirectory
+	cp -r /tmp/dir1 Documents/		
+	cp -i /tmp/testfile Documents/
+Moving files and directories
+	1.mv [source] [destination] -Move/rename
+	2.mv - i -Move interactively (will ask before over writing)
+	3.mv /root/file -Moves file to current directory
+	touch /tmp/to-move
+	ls /tmp/
+	mv /tmp/to-move Documents/
+	ls /tmp/
+	cp /tmp/xfiles .
+Removing files and directories
+	rm /tmp/testfile -Remove file
+	rmdir /tmp/testdir -Remove empty testdir
+	rm -r /tmp/testdir -Remove directory and its content
+	rm -r -i /tmp/testdir -Interactive
+	rm -rf /tmp/testdir -Force remove
+	rm testfile
+	rmdir testdir/
+Adding/removing software and updating/upgrading your system
+	Packages
+		-In Linux,packages=software
+		-you may wish to install or remove packages
+		-These packages often require dependencies
+		-Different Linux distributions have different package
+		 management software
+		-For example,Red Hat has yum,Debian has apt
+	Advanced Packaging tool
+		-apt-cache search -search for package
+		-apt-cache show - show information about package
+		-apt-get install -install package
+		-apt-get install -y - Auto answer yes
+		-apt-get remove -Remove package (but leave configs)
+		-apt-get purge -Remove package and configs
+		apt-cache search graphical ftp
+		apt-cache show filezilla
+		apt-get -y install filezilla
+		apt-get remove filezilla
+Understanding Where software on Kali Linux comes from
+	cat /etc/apt/sources.list
+	apt-get update Resynchronize sources
+	apt-get upgrade Upgrade all installed packages to newset version
+	Find versions of installed applications
+		dpkg -l
+	install package
+		dpkg -i package.deb
+	Remove package
+		dpkg -r package.deb
+	Mission
+		1.install FileZilla.Activate FTP on you windows machine and from kali
+		  connect to your FTP server using Filezilla
+		2.Install Nessus on Kali
+APT changes in Kali Linux 2018
+	Looks much prettier
+		Progress bars
+		Colors
+	apt and apt-get can be used
+	apt install filezilla or ap-get filezilla
+	apt autoremove
+	apt install equals apt-get install
+	apt remove equals apt-get remove
+	apt purge equals apt-get purge
+	apt autoremove equals apt-get autoremove
+	apt search equals apt-cahce search
+	apt show equals apt-cache show
+	apt update equals apt-get update
+	apt upgrade equals apt-get upgrade
+	apt full-upgrade equals apt-get dist-upgrade
+	apt edit-sources equals nano
+		/etc/apt/sources.list
+APT changes in Kali Linux 2018
+	Looks much prettier
+		Progress bars
+		Colors
+		Etc
+	apt and apt-get can be used
+Archiving files and directories
+	TAR-Archiving tool
+		tar c -create archive
+		tar r- Append to archive
+		tart t -List contents of archive
+		tar x -Extract archive 
+		tar v -Verbose
+		tar f file -File to use
+	Cmpression
+		gzip - CLassic compression in Linxu
+			-d -decompress file
+		bzip2 - More compression than gzip but more time to compress
+			-d -decomress file
+	Create tar from files
+		tar cvf archive.tar file1 file2 dir1 dir
+	List content of archive
+		tar tvf archive.tar
+	Add to file or dir to archive
+		tar rvf archive.tar file3
+		tar rvf archive.tar dir3
+	Compress
+		tar zcvf compressed.tar.gz file1 file2
+		tar jcvf compressed.tar.bz2 file1 file2
+	List
+		tar ztvf compressed.tar.gz
+		tar jtvf compressed.tar.bz2
+Using wildcards to speed up tasks
+	WildCards
+		-AKA globbing,are characters or strings used for pattern matching
+		-Used with command line to increase flexibility of search
+		* - Matches zero or all characters
+		? - Matches exactly one character
+		[] -Matches any of the characters enclosed in the brackets
+		\ -Escape character
+		mkdir notes
+		mv notes* notes
+		ls notes-*
+How to get help when needed
+	cd /usr/share/wordlists/
+	file rockyou.txt.gz
+	apropos gzip
+	which gzip
+	man -k gzip
+	gzip --help
+Networking basics on Kali linux
+	network connectivity
+		Network interfaces(wired,wireless,VPN etc)
+			eth0 -wired network
+			lo -Loopback address
+			wlan0 -Wireless network
+		IP address
+		Gateways
+		Route		
+		ifconfig
+		nslookup google.com
+		cat /etc/resolv.conf
+		ip route
+		traceroute hackersacademy.com
+		netstat -antp
+			-a -all
+			-n -show numerical address
+			-t -TCP
+			-p -show the name of the program
+	How to edit files with nano
+		1.nano is a clone of pico
+		2.Both are available on Kali
+		3.If you are using another Linux and nano isn't avialble look
+		  for pico
+		4.nano isn't as advanced as vi,vim or emacs
+		5.vi,vim and emacs will not be covered in this course
+	  	6.nano hackersacademy.txt
+		  cat hackeracademy.tx
+	Turning your Kali Linux into a webserver
+		Secure SHell
+			1.Normally used for remote login and remote
+			  administration
+		Apache
+			1.Web Server
+			2.you should know what that is by now
+		SSH and Apache are both useful to upload/download to/from target
+		service apache2 start
+		cd /var/www/html/
+		ls
+		echo "Hello Ethical Hackers!"
+Configuration file changes in Kali Linux 2018
+	service ssh start
+	ssh localhost
+	nano /etc/ssh/sshd_config
+	service ssh restart
+Turning your Kali Linux into an SSH Server
+	cd /etc/ssh
+	ls
+	mkdir default-keys
+	mv ssh_host_* default-keys/
+	ls
+	dpkg-reconfigure openssh-server
+	ls
+	nano sshd_config
+	search word:ctrl+w
+	service ssh restart
+Managing users and groups
+	IDS
+		1.Every user has an ID
+		2.User root has ID 0
+		3.New users start from ID 1000,1001 etc
+		4.Every user will belong to a group
+		5.By default group with the same name as user will created
+	Whoami - Displays your username
+	w -shows whos's logged on and what they are doing
+	cat /etc/passwd - see a list of users
+	cat /etc/shadow -see encrypted passwords
+	Add/Delete users
+		adduser tom
+		useradd tom
+		userdel tom
+		deluser 
+	switch user
+		su tom
+	Add/Delete groups
+		addgroup cats - Create a new group cats
+		usermod -g cats tom - Change tom's group
+		delgroup tom - Delete group tom
+	Maintaing permissios f users
+		File/dir permissions
+			r-read w-write x-Execute
+			u-User(owner) g-Group assigned file or dir
+			o-other 
+			a- All
+			+ Add Permission
+			- Remove permission
+			= Make this the only permission
+		CHMOD Examples
+			chmod ugoa +-= rwx filename -syntax
+			chmod u+x somefile - Make somefile executable for owner
+			chmod a+rw somefile -Make somefile readable and writeable by everyone
+					 (word readble and writable)
+		ls -l
+Understanding processes
+	1.A process is a running instance of a command
+	They can be managed,that is
+		Viewed
+		Paused
+		Stopped
+		Put in background
+		Brought back to foreground
+	Attributes
+		1.Every process has a unique ID
+		2.Every process is associated with user and group
+		3.Process running by root for example would have more access rights that a process
+		  running by a regular user
+	List
+		ps-List processes of current session
+		ps -f -List processes with full formating
+		ps -e -List all processes
+		ps -u [username] -List processes of [username]
+		ps -p [pid] -Display informatio PID
+		kill [PID]
+		kill -9 [PID] -Forces stop process
+Managing process
+	Back/foreground
+		command & - Run command in background
+		jobs -List jobs running in background
+		fg [n] - Foreground job number[n]
+	nmap -v  -TO hackthisite.org &
+	jobs
+	fg 1
+	tmux - Another way to do the same as above
+	ps -u tom
+	su tom 
+	tmux list-sessions
+Command redirection and controlling output
+Chaining multiple commands together
+	ls /usr/share/namp/scripts | less
+	ls /usr/share/namp/scripts | grep brute
+	wc -l targets.txt
+	less targets.txt
+	grep 10.10.10 targets.txt> 10s.txt
+	grep 25/open
+	grep 25/open output.gnmap | cut -d " " -f 2
+	Use grep to find and sort unique IP addresses with port 80 open
+	Use grep to find and sort unique IP addresses with port 22 open
+Hacking with Kali Linux
+	ifconfig
+	netdiscover -r 192.168.190.144/24
+	Port scanning with kali linux
+		nmap -v -p 0-65535 -A 192.168.190.145 -oA metasplotiable2
+		nmap -v -T -p 0-65535 -A 192.168.190.145 -oA metasplotiable2
+		mkdir target
+		mv metasplotiable2*
+	Port scanning using with kali linux
+	Hacking with Kali LInux -FTP hacking
+		apt-get install ftp
+	Vulnerablility scanning with Kali linux
+		netstat -antp
+		nesus
+	
+		
+	
+		
+		
+		
+	
+		    	
+	
+	
+	
+	
+	
+	
+		
+	
+				
+			
+		
+			
+
+									
+				
+
+
+
+
+
+
+
+
+
+
+	
